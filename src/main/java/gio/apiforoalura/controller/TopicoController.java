@@ -7,8 +7,12 @@ import gio.apiforoalura.domain.topico.*;
 import gio.apiforoalura.domain.usuario.DatosListadoUsers;
 import gio.apiforoalura.domain.usuario.User;
 import gio.apiforoalura.domain.usuario.UserRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,17 +41,14 @@ public class TopicoController {
 
     @PostMapping()
     public ResponseEntity<DTORespuestaTopic> registroTopico(@RequestBody @Valid DTORegistroTopic registroTopico, UriComponentsBuilder uriComponentsBuilder){
-        System.out.println(registroTopico.user() +"/"+ registroTopico.course());
         User usuario = usuarioRepository.getReferenceById(registroTopico.user());
         Course curso = cursoRepository.getReferenceById(registroTopico.course());
-        System.out.println(registroTopico.title());
         Topic topico = topicoRepository.save(new Topic(registroTopico, usuario, curso));
-        URI url = uriComponentsBuilder.path("/{id}").buildAndExpand(topico.getId()).toUri();
-        DTORespuestaTopic respuestaTopico = new DTORespuestaTopic(topico);
-        return ResponseEntity.created(url).body(respuestaTopico);
+        URI url = uriComponentsBuilder.path("/api/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        return ResponseEntity.created(url).body(new DTORespuestaTopic(topico));
     }
 
-    @GetMapping
+    @GetMapping("/usuarios")
     public List<DatosListadoUsers> obtenerUsuario(){
         return usuarioRepository.findAll().stream().map(DatosListadoUsers::new).toList();
     }
@@ -55,5 +56,29 @@ public class TopicoController {
     @GetMapping("/cor")
     public List<DTOListadoCourses> obtenerCourses(){
         return cursoRepository.findAll().stream().map(DTOListadoCourses::new).toList();
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DTODatosTopico>> listadoTopicos(@PageableDefault(size = 5) Pageable pageable){
+        return ResponseEntity.ok(topicoRepository.findAll(pageable).map(DTODatosTopico::new));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DTODatosTopico> datosTopico(@PathVariable Long id){
+        Topic topico = topicoRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DTODatosTopico(topico));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> actualizarTopico(@RequestBody DatosListadoUsers datosListadoUsers){
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> eliminarTopico(@PathVariable Long id){
+        Topic topico = topicoRepository.getReferenceById(id);
+        topico.actualizarStatus();
+        return ResponseEntity.noContent().build();
     }
 }

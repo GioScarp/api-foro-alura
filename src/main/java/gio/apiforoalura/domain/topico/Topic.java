@@ -46,4 +46,8 @@ public class Topic {
         this.status = StatusTopic.NO_RESPONDIDO;
     }
 
+
+    public void actualizarStatus() {
+        this.status = StatusTopic.CERRADO;
+    }
 }
