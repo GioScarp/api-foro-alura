@@ -69,16 +69,19 @@ public class TopicoController {
         return ResponseEntity.ok(new DTODatosTopico(topico));
     }
 
-    @PutMapping
-    public ResponseEntity<?> actualizarTopico(@RequestBody DatosListadoUsers datosListadoUsers){
-        return ResponseEntity.ok().build();
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DTORespuestaTopic> actualizarTopico(@PathVariable Long id, @RequestBody @Valid DTOActualizarTopic dtoActualizarTopic){
+        Topic topic = topicoRepository.getReferenceById(id);
+        topic.actualizarDatos(dtoActualizarTopic);
+        return ResponseEntity.ok(new DTORespuestaTopic(topic));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> eliminarTopico(@PathVariable Long id){
         Topic topico = topicoRepository.getReferenceById(id);
-        topico.actualizarStatus();
+        topico.actualizarStatus(StatusTopic.CERRADO);
         return ResponseEntity.noContent().build();
     }
 }

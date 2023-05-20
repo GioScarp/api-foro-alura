@@ -46,8 +46,16 @@ public class Topic {
         this.status = StatusTopic.NO_RESPONDIDO;
     }
 
+    public void actualizarDatos(DTOActualizarTopic dtoActualizarTopic) {
+        if (dtoActualizarTopic.title() != null && !dtoActualizarTopic.title().isEmpty()){
+            this.title = dtoActualizarTopic.title();
+        }
+        if (dtoActualizarTopic.message() != null && !dtoActualizarTopic.message().isEmpty()){
+            this.message = dtoActualizarTopic.message();
+        }
+    }
 
-    public void actualizarStatus() {
+    public void actualizarStatus(StatusTopic status) {
         this.status = StatusTopic.CERRADO;
     }
 }
