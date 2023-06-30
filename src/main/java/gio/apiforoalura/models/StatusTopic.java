@@ -1,4 +1,4 @@
-package gio.apiforoalura.domain.topico;
+package gio.apiforoalura.models;
 
 public enum StatusTopic {
     NO_RESPONDIDO,
@@ -6,3 +6,4 @@ public enum StatusTopic {
     SOLUCIONADO,
     CERRADO;
 }
+

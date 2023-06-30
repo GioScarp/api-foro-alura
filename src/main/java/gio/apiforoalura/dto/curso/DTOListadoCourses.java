@@ -1,4 +1,6 @@
-package gio.apiforoalura.domain.curso;
+package gio.apiforoalura.dto.curso;
+
+import gio.apiforoalura.models.Course;
 
 public record DTOListadoCourses(String name, String category) {
 

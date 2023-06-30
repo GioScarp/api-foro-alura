@@ -1,4 +1,4 @@
-package gio.apiforoalura.domain.curso;
+package gio.apiforoalura.dto.curso;
 
 public record DTORegistroCourse() {
 }
