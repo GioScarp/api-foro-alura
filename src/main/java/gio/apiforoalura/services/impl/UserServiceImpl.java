@@ -7,6 +7,7 @@ import gio.apiforoalura.mapper.UserMapper;
 import gio.apiforoalura.models.User;
 import gio.apiforoalura.repositories.UserRepository;
 import gio.apiforoalura.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,33 +23,32 @@ public class UserServiceImpl implements UserService {
     private final ObjectsValidator<UserUpdateDto> validatorUpdate;
 
     @Override
-    public Long save(UserDto dto) {
-        validator.validate(dto);
-        User user = UserMapper.toEntity(dto);
-        return userRepository.save(user).getId();
+    public Long save(UserDto userDto) {
+        validator.validate(userDto);
+        return userRepository.save(UserMapper.toEntity(userDto)).getId();
     }
 
     @Override
     public Page<UserDto> findAll(Pageable pageable) {
-        return userRepository.findByisActive(pageable, true).map(UserMapper::toUserRespuestaDto);
+        return userRepository.findByisActive(pageable, true).map(UserMapper::toUserResponseDto);
     }
 
     @Override
     public UserDto findById(Long id) {
-        return UserMapper.toUserRespuestaDto(userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(USER_ID_NOT_FOUND)));
+        return UserMapper.toUserResponseDto(userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(USER_ID_NOT_FOUND)));
     }
 
     @Override
     public UserDto updateUser(Long id , UserUpdateDto userDto) {
         validatorUpdate.validate(userDto);
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(USER_ID_NOT_FOUND));
+                .orElseThrow(() -> new EntityNotFoundException(USER_ID_NOT_FOUND));
 
         updateDataUser(user, userDto);
 
         //return UserMapper.toUserRespuestaDto(userRepository.saveAndFlush(user));
-        return UserMapper.toUserRespuestaDto(user);
+        return UserMapper.toUserResponseDto(user);
     }
 
     private void updateDataUser(User user, UserUpdateDto userDto) {
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(USER_ID_NOT_FOUND));
+                .orElseThrow(() -> new EntityNotFoundException(USER_ID_NOT_FOUND));
         user.setActive(false);
     }
 

@@ -26,10 +26,9 @@ public class TopicServiceImpl implements TopicService {
     private final ObjectsValidator<TopicUpdateDto> validatorUpdate;
 
     @Override
-    public Long save(TopicDto dto) {
-        validator.validate(dto);
-        Topic topic = TopicMapper.toEntity(dto);
-        return topicRepository.save(topic).getId();
+    public Long save(TopicDto topicDto) {
+        validator.validate(topicDto);
+        return topicRepository.save(TopicMapper.toEntity(topicDto)).getId();
     }
 
     @Override

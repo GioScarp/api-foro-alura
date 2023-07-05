@@ -4,7 +4,7 @@ import gio.apiforoalura.dto.UserDto;
 import gio.apiforoalura.models.User;
 
 public class UserMapper {
-    public static UserDto toUserRespuestaDto(User user){
+    public static UserDto toUserResponseDto(User user){
         return UserDto.builder()
                 .id(user.getId())
                 .userName(user.getUserName())
