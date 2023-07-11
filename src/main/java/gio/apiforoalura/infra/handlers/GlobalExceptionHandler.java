@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ExceptionRepresentation> handleException(ObjectValidationException exception) {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
                 .errorMessage("Object not valid exception has occurred")
-                .errorSource(exception.getViolationSource())
+                .errorSource(exception.getViolationSource().replaceAll("^.*\\.(.*)$", "$1"))
                 .validationErrors(exception.getViolations())
                 .build();
         return ResponseEntity
@@ -24,16 +24,6 @@ public class GlobalExceptionHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(representation);
     }
-
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<List<ErrorMessage>> resourceNotFoundException(MethodArgumentNotValidException e){
-//        var errors2 = e.getFieldErrors().stream().map(f-> ErrorMessage.builder().
-//                        field(f.getField()).
-//                        message(f.getDefaultMessage()).build())
-//                        .toList();
-//        //var errors = e.getFieldErrors().stream().map(ErrorMessage::new).toList();
-//        return ResponseEntity.badRequest().body(errors2);
-//    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ExceptionRepresentation> handleException(EntityNotFoundException e){

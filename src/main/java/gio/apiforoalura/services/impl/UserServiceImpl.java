@@ -2,6 +2,7 @@ package gio.apiforoalura.services.impl;
 
 import gio.apiforoalura.dto.UserDto;
 import gio.apiforoalura.dto.UserUpdateDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.infra.validators.ObjectsValidator;
 import gio.apiforoalura.mapper.UserMapper;
 import gio.apiforoalura.models.User;
@@ -23,10 +24,9 @@ public class UserServiceImpl implements UserService {
     private final ObjectsValidator<UserUpdateDto> validatorUpdate;
 
     @Override
-    public Long save(UserDto userDto) {
+    public Long save(UserDto userDto) throws ObjectValidationException {
         validator.validate(userDto);
         User user = userRepository.save(UserMapper.toEntity(userDto));
-        //System.out.println(user.getIsActive());
         return user.getId();
     }
 
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(Long id , UserUpdateDto userDto) {
+    public UserDto updateUser(Long id , UserUpdateDto userDto) throws ObjectValidationException {
         validatorUpdate.validate(userDto);
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(USER_ID_NOT_FOUND));

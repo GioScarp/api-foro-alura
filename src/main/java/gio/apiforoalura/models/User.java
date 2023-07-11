@@ -6,6 +6,9 @@ import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -14,7 +17,10 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
-public class User extends AbstractEntity{
+public class User extends AbstractEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -8275532595825537050L;
 
     @Column(name = "user_name")
     private String userName;

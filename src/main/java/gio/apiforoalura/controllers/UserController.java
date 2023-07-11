@@ -2,6 +2,7 @@ package gio.apiforoalura.controllers;
 
 import gio.apiforoalura.dto.UserDto;
 import gio.apiforoalura.dto.UserUpdateDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<Long> saveUser(@RequestBody UserDto userDto, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Long> saveUser(@RequestBody UserDto userDto, UriComponentsBuilder uriComponentsBuilder) throws ObjectValidationException {
         Long idTopic = userService.save(userDto);
         URI url = uriComponentsBuilder.path("/api/users/{id}").buildAndExpand(idTopic).toUri();
         return ResponseEntity.created(url).body(idTopic);
@@ -40,7 +41,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userDto ){
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userDto ) throws ObjectValidationException {
         return ResponseEntity.ok(userService.updateUser(id, userDto));
     }
 

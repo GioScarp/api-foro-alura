@@ -1,6 +1,7 @@
 package gio.apiforoalura.controllers;
 
 import gio.apiforoalura.dto.CourseDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.services.CourseService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping("/")
-    public ResponseEntity<Long> saveCourse(@RequestBody CourseDto courseDto, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Long> saveCourse(@RequestBody CourseDto courseDto, UriComponentsBuilder uriComponentsBuilder) throws ObjectValidationException {
         Long idTopic = courseService.save(courseDto);
         URI url = uriComponentsBuilder.path("/api/users/{id}").buildAndExpand(idTopic).toUri();
         return ResponseEntity.created(url).body(idTopic);

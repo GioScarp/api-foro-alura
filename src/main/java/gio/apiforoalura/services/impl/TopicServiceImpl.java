@@ -2,6 +2,7 @@ package gio.apiforoalura.services.impl;
 
 import gio.apiforoalura.dto.TopicDto;
 import gio.apiforoalura.dto.TopicUpdateDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.infra.validators.ObjectsValidator;
 import gio.apiforoalura.mapper.TopicMapper;
 import gio.apiforoalura.models.StatusTopic;
@@ -26,7 +27,7 @@ public class TopicServiceImpl implements TopicService {
     private final ObjectsValidator<TopicUpdateDto> validatorUpdate;
 
     @Override
-    public Long save(TopicDto topicDto) {
+    public Long save(TopicDto topicDto) throws ObjectValidationException {
         validator.validate(topicDto);
         return topicRepository.save(TopicMapper.toEntity(topicDto)).getId();
     }
@@ -51,7 +52,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public TopicDto updateTopic(Long id, TopicUpdateDto updateTopic) {
+    public TopicDto updateTopic(Long id, TopicUpdateDto updateTopic) throws ObjectValidationException {
         validatorUpdate.validate(updateTopic);
         final Topic topic = topicRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(TOPIC_NOT_FOUND + id));

@@ -2,6 +2,7 @@ package gio.apiforoalura.controllers;
 
 import gio.apiforoalura.dto.TopicDto;
 import gio.apiforoalura.dto.TopicUpdateDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.services.TopicService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class TopicoController {
     private final TopicService topicService;
 
     @PostMapping("/")
-    public ResponseEntity<Long> saveTopic(@RequestBody TopicDto topicDto, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Long> saveTopic(@RequestBody TopicDto topicDto, UriComponentsBuilder uriComponentsBuilder) throws ObjectValidationException {
         Long idTopic = topicService.save(topicDto);
         URI url = uriComponentsBuilder.path("/api/topics/{id}").buildAndExpand(idTopic).toUri();
         return ResponseEntity.created(url).body(idTopic);
@@ -40,7 +41,7 @@ public class TopicoController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<TopicDto> updateTopico(@PathVariable Long id, @RequestBody TopicUpdateDto updateTopic){
+    public ResponseEntity<TopicDto> updateTopico(@PathVariable Long id, @RequestBody TopicUpdateDto updateTopic) throws ObjectValidationException {
         return ResponseEntity.ok(topicService.updateTopic(id, updateTopic));
     }
 

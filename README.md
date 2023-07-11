@@ -1,5 +1,5 @@
 # Challenge API Foro Alura
-![](https://github.com/GioScarp/convertidor_monedas/blob/main/convertidor_moneda/resources/Readme_Recursos/Conversor_Multiple.png)
+![]()
 
 El foro de Alura proporciona a los alumnos un espacio dedicado para compartir sus preguntas sobre cursos específicos. En esta ocasión, se plantea una solución a este challenge que permite almacenar de manera correcta la información relacionada con los tópicos, respuestas, usuarios y cursos.
 
@@ -37,22 +37,16 @@ Nuestra API va a centrarse específicamente en los tópicos, y debe permitir a l
 ### Funcionalidades
     - API con rutas implementadas siguiendo las mejores prácticas del modelo REST;
     - Validaciones realizadas según reglas de negócio;
-    - Implementación de una base de datos para la persistencia de la información;
+    - Migración de una base de datos para la persistencia de la información;
     - Efectuar cambios en la base de datos para almacenar datos de autenticación de los usuarios
-    - Insertar maneras de autenticación con Spring Security
+    - Desarrollar formas de autenticación con Spring Security
     - Uso del token JWT
     - Documentación con Swagger
 
-# Demo
-![](https://github.com/GioScarp/convertidor_monedas/blob/main/convertidor_moneda/resources/Readme_Recursos/Convertidor_Multiple.gif)
+# Demo WIP
+![]()
 
-# Características
-* Consumo de Appi's [Exchange Rate Data API](https://apilayer.com/marketplace/exchangerates_data-api)
-* Tasa de cambio actual de las diferentes monedas disponibles
-* Interfaz gráfica agradable e intuitiva
-* Validaciones a los datos ingresados por parte del usuario
-* Texto informativos a medida de que el usuario interactua con la app
-# Pasos de instalación
+# Pasos de instalación WIP
 ### Ejecutable JAR
 1. Clonar el repositorio
 2. Ejecutar el Jar (convertidor_moneda.jar) que se encuentra en la carpeta raiz del proyecto
@@ -67,44 +61,21 @@ Nuestra API va a centrarse específicamente en los tópicos, y debe permitir a l
 * Java 17
 * Spring Boot 3
 * Postman/Insomnia
-### Estructura del proyecto
-* Resources
-* src
-    * Config
-        * Properties
-    * Controladores
-        * Controlador Moneda
-        * Controlador Temperatura
-    * Vistas
-        * Vista Moneda
-        * Vista Temperatura
-        * Vista Main
-#### Clase Moneda
-    public class Moneda {
-        private String nombre;
-        private String simbolo;
-        private ImageIcon icono;
+* JWT / Spring Security
+* Flyway
+* Mysql
+* JPA
+### Estructura del proyecto WIP
+![]()
+#### --
 
-        public Moneda(){
-        }
-    }
-#### Clase Temperatura
+#### --
 
-    public class Temperatura {
-        private double temperatura;
-        private String simbolo;
-        private String nombre;
-        private ImageIcon icon;
-    
-        public Temperatura(){
-
-        }
-    }
 
 ### Validaciones
-* Solo son válidos números enteros o decimales
-* Para el convertidor de moneda no se aceptan valores negativos o valor 0
-* Para poder convertir se debe seleccionar las monedas correspondientes o la temperatura principal
+* Validaciones con Bean Validation
+* Control y manejo de excepciones
+* Respuesta personalizada de errores
 
 # Licencia
 Este proyecto está licenciado bajo la Licencia MIT

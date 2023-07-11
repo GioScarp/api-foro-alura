@@ -16,7 +16,7 @@ public class ObjectsValidator<T> {
     private final ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = validatorFactory.getValidator();
 
-    public void validate(T objectToValidate){
+    public void validate(T objectToValidate) throws ObjectValidationException {
         Set<ConstraintViolation<T>> violations = validator.validate(objectToValidate);
         if(!violations.isEmpty()){
             Set<String> errorMessages = violations.stream()

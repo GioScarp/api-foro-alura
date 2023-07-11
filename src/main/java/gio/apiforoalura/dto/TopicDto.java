@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Builder
 public record TopicDto(
 
@@ -19,6 +22,9 @@ public record TopicDto(
         @NotNull(message = "Usuario no debe estar null")
         Long user,
         @NotNull(message = "curso no debe estar null")
-        Long course) {
+        Long course) implements Serializable {
+
+        @Serial
+        private static final long serialVersionUID = -97824693522548545L;
 
 }

@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "topics")
 @Getter
@@ -12,7 +15,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
-public class Topic extends AbstractEntity {
+public class Topic extends AbstractEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1985693254717212585L;
 
     @Column(unique = true)
     private String title;

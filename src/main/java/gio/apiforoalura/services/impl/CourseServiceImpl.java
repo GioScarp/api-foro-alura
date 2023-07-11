@@ -1,6 +1,7 @@
 package gio.apiforoalura.services.impl;
 
 import gio.apiforoalura.dto.CourseDto;
+import gio.apiforoalura.infra.exceptions.ObjectValidationException;
 import gio.apiforoalura.infra.validators.ObjectsValidator;
 import gio.apiforoalura.mapper.CourseMapper;
 import gio.apiforoalura.models.Course;
@@ -21,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
     private final ObjectsValidator<CourseDto> validator;
 
     @Override
-    public Long save(CourseDto dto) {
+    public Long save(CourseDto dto) throws ObjectValidationException {
         validator.validate(dto);
         return courseRepository.save(CourseMapper.toEntity(dto)).getId();
     }
