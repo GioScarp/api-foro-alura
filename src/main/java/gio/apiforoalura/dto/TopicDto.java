@@ -1,9 +1,6 @@
 package gio.apiforoalura.dto;
 
-import gio.apiforoalura.models.Course;
 import gio.apiforoalura.models.StatusTopic;
-import gio.apiforoalura.models.Topic;
-import gio.apiforoalura.models.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +18,6 @@ public record TopicDto(
         StatusTopic statusTopic,
         @NotNull(message = "Usuario no debe estar null")
         Long user,
-
         @NotNull(message = "curso no debe estar null")
         Long course) {
 

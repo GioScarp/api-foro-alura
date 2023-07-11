@@ -41,6 +41,6 @@ public class CourseServiceImpl implements CourseService {
     public void delete(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException(COURSE_NOT_FOUND));
-        course.setActive(false);
+        course.setIsActive(false);
     }
 }

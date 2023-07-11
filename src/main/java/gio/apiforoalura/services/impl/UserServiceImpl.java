@@ -25,7 +25,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long save(UserDto userDto) {
         validator.validate(userDto);
-        return userRepository.save(UserMapper.toEntity(userDto)).getId();
+        User user = userRepository.save(UserMapper.toEntity(userDto));
+        //System.out.println(user.getIsActive());
+        return user.getId();
     }
 
     @Override
@@ -54,13 +56,15 @@ public class UserServiceImpl implements UserService {
     private void updateDataUser(User user, UserUpdateDto userDto) {
         user.setUserName(userDto.userName());
         user.setEmail(userDto.email());
+
+        //userRepository.saveAndFlush(user);
     }
 
     @Override
     public void delete(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(USER_ID_NOT_FOUND));
-        user.setActive(false);
+        user.setIsActive(false);
     }
 
 }

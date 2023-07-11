@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(callSuper = false)
 public class Course extends AbstractEntity {
 
     private String name;
@@ -19,6 +19,7 @@ public class Course extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @Builder.Default
     @Column(name = "active")
-    private boolean isActive;
+    private Boolean isActive = true;
 }

@@ -1,6 +1,8 @@
 package gio.apiforoalura.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -21,7 +23,8 @@ public class User extends AbstractEntity{
 
     private String password;
 
+    @Builder.Default
     @Column(name = "active")
-    private boolean isActive;
+    private Boolean isActive = true;
 
 }
