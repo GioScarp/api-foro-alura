@@ -11,5 +11,4 @@ public class ApiForoAluraApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApiForoAluraApplication.class, args);
     }
-
 }
