@@ -1,5 +1,7 @@
 package gio.apiforoalura.config;
 
+import gio.apiforoalura.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,7 +11,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,8 +21,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+    private final JwtUtils jwtUtils;
+    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(
@@ -36,10 +37,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String jwt = authHeader.substring(7);
-        String username = jwtService.extractUsername(jwt);
+        String username = jwtUtils.extractUsername(jwt);
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if(jwtService.isValidToken(jwt, userDetails)) {
+            //UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = userRepository.findByUserName(username).orElseThrow(
+                    ()-> new EntityNotFoundException("Usuario no encontrado durante la validación"));
+            if(jwtUtils.isValidToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,

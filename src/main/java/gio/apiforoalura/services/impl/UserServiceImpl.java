@@ -1,6 +1,6 @@
 package gio.apiforoalura.services.impl;
 
-import gio.apiforoalura.config.JwtService;
+import gio.apiforoalura.config.JwtUtils;
 import gio.apiforoalura.dto.AuthenticationRequest;
 import gio.apiforoalura.dto.AuthenticationResponse;
 import gio.apiforoalura.dto.UserDto;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     private final ObjectsValidator<UserDto> validator;
     private final ObjectsValidator<UserUpdateDto> validatorUpdate;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JwtUtils jwtUtils;
     private final AuthenticationManager authManager;
 
     @Override
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userID", savedUser.getId());
         claims.put("fullName", savedUser.getFristname() + " " + savedUser.getLastname());
-        String jwtToken = jwtService.generateToken(claims, savedUser);
+        String jwtToken = jwtUtils.generateToken(claims, savedUser);
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userID", user.getId());
         claims.put("fullName", user.getFristname() + " " + user.getLastname());
-        String jwtToken = jwtService.generateToken(claims, user);
+        String jwtToken = jwtUtils.generateToken(claims, user);
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
