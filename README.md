@@ -1,6 +1,6 @@
 # Challenge API-Rest Foro Alura
 <p align="center" dir="auto">
-<img align="center" src="https://photos.google.com/u/2/share/AF1QipOxJo6vqQCcWb9vRKHoc_OtU2BWEjA9W7IrA-rUhTFD0M4OraKNWhtgS_0Bf5VI3w/photo/AF1QipMGO79YqyII5ePSE8ns4OtISW83bzkjKLSCwOt0?key=cURLejJybTBJOFVsRDVLek8yOVkwWUQ2UF9rLUxB" width="80%">
+<img align="center" src="https://github.com/GioScarp/api-foro-alura/blob/main/src/main/resources/images-readme/GitHub_Api.png" width="80%">
 </p>
 
 >El foro de Alura proporciona a los alumnos un espacio dedicado para compartir sus preguntas sobre cursos específicos. En esta ocasión, se plantea una solución a este challenge que permite almacenar de manera correcta la información relacionada con los tópicos, respuestas, usuarios y cursos.
@@ -75,7 +75,7 @@ Principalmente se desarrollo dentro del IDE de _Intellij IDEA_, empleando el **l
 * Swagger
 
 # Insignia Obtenida
-<p align="center" dir="auto"><img src="https://photos.google.com/u/2/share/AF1QipOxJo6vqQCcWb9vRKHoc_OtU2BWEjA9W7IrA-rUhTFD0M4OraKNWhtgS_0Bf5VI3w/photo/AF1QipPvAdbG7Igg0go5W1BEUFf4CtDddxXVA3117ter?key=cURLejJybTBJOFVsRDVLek8yOVkwWUQ2UF9rLUxB" width="80%"></p>
+<p align="center" dir="auto"><img src="https://github.com/GioScarp/api-foro-alura/blob/main/src/main/resources/images-readme/Insignia_Foro_Alura.png" width="80%"></p>
 <p align="center" dir="auto">Insignia obtenida por la finalización del proyecto </p>
 
 # Licencia
