@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({ObjectValidationException.class})
     public ResponseEntity<ExceptionRepresentation> handleException(ObjectValidationException exception) {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage("Object not valid exception has occurred")
+                .errorMessage("Se ha producido una excepción en las validaciones")
                 .errorSource(exception.getViolationSource().replaceAll("^.*\\.(.*)$", "$1"))
                 .validationErrors(exception.getViolations())
                 .build();
@@ -33,8 +33,4 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(representation);
     }
 
-//    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-//    public ResponseEntity<?> SQLIntegrity(SQLIntegrityConstraintViolationException e){
-//        return ResponseEntity.notFound().build();
-//    }
 }
