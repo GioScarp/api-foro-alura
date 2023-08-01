@@ -1,28 +1,28 @@
-# Challenge API Foro Alura
-![]()
+# Challenge API-Rest Foro Alura
+<p align="center" dir="auto">
+<img align="center" src="https://photos.google.com/u/2/album/AF1QipP2zXD39Tb667nCi2b2SuzkMaO_Mupul-y7o-La/photo/AF1QipMGO79YqyII5ePSE8ns4OtISW83bzkjKLSCwOt0" width="80%">
+</p>
 
-El foro de Alura proporciona a los alumnos un espacio dedicado para compartir sus preguntas sobre cursos específicos. En esta ocasión, se plantea una solución a este challenge que permite almacenar de manera correcta la información relacionada con los tópicos, respuestas, usuarios y cursos.
+>El foro de Alura proporciona a los alumnos un espacio dedicado para compartir sus preguntas sobre cursos específicos. En esta ocasión, se plantea una solución a este challenge que permite almacenar de manera correcta la información relacionada con los tópicos, respuestas, usuarios y cursos.
 
-Utilizando Spring Boot, se diseña una API REST que maneja las operaciones de creación, lectura, actualización y eliminación de los diferentes elementos del foro. Se implementa un sistema de almacenamiento de datos que garantiza la integridad y la relación adecuada entre los tópicos, respuestas y usuarios
+>Utilizando Spring Boot, se diseña una API REST que maneja las operaciones de creación, lectura, actualización y eliminación de los diferentes elementos del foro. Se implementa un sistema de almacenamiento de datos que garantiza la integridad y la relación adecuada entre los tópicos, respuestas y usuarios
 
 
 ## Table of Contents
 
-- [Contexto del Challenge](#Contexto-del-Challenge)
-- [Requerimientos del Challenge](#Requerimientos-del-Challenge)
-- [Funcionalidades](#Funcionalidades)
-- [Demo](#demo)
-- [Características](#características)
-- [Pasos de instalación](#pasos-de-instalación)
-    - [JAR](#ejecutable-jar)
-    - [Intellij](#intellij-idea)
-- [Proceso](#proceso)
+- [Contexto del Challenge](#contexto-del-challenge)
+- [Requerimientos del Challenge](#requerimientos-del-challenge)
+- [Funcionalidades](#funcionalidades)
+- [Demo](#demo-wip)
+- [Instalación](#instalación)
+- [Tecnologías usadas](#tecnologías-usadas)
+- [Insignia Obtenida](#insignia-obtenida)
 - [License](#licencia)
 - [Autor](#autor)
 
 # Contexto del Challenge
 
-El foro de Alura es un espacio colaborativo donde los alumnos comparten preguntas sobre cursos específicos. A nivel técnico, surge la curiosidad sobre cómo funciona en términos de almacenamiento y relación de datos entre tópicos, respuestas y usuarios. 
+>El foro de Alura es un espacio colaborativo donde los alumnos comparten preguntas sobre cursos específicos. A nivel técnico, surge la curiosidad sobre cómo funciona en términos de almacenamiento y relación de datos entre tópicos, respuestas y usuarios. 
 Nuestro desafío será crear una API REST con Spring para replicar este proceso en el backend.
 
 ## Requerimientos del Challenge
@@ -46,38 +46,40 @@ Nuestra API va a centrarse específicamente en los tópicos, y debe permitir a l
 # Demo WIP
 ![]()
 
-# Pasos de instalación WIP
-### Ejecutable JAR
-1. Clonar el repositorio
-2. Ejecutar el Jar (convertidor_moneda.jar) que se encuentra en la carpeta raiz del proyecto
-3. Disfrute de la aplicación
-### Intellij IDEA
-1. Clonar el repositorio
-2. Abir proyecto en Intellij
-3. Run main y disfrutar la aplicación
+# Instalación
 
-# Proceso
-### Tecnologías usadas
-* Java 17
-* Spring Boot 3
-* Postman/Insomnia
+1. Clonar el repositorio o descargar el proyecto en formato zip
+
+2. Una vez tengas el proyecto en tu maquina local, puedes buscar el archivo pom.xml y abrirlo con tu `IDE` preferido o puedes abrirlo directamente desde tu `IDE` en archivo -> importar proyecto o una opción similar y seleccionar el archivo zip descargado.
+
+3. Antes de ejecutar la aplicación, asegúrate de tener una base de datos configurada. En este proyecto, se utiliza `Flyway` para gestionar las migraciones de la base de datos. Asegúrate de tener una instancia de la base de datos en ejecución y configure los parámetros de conexión en el archivo `application.properties`.
+
+    * spring.datasource.url
+    * spring.datasource.username
+    * spring.datasource.password
+
+4. Una vez tengas la base de datos configurada, compile, ejecute el proyecto y pruebe la app.
+
+
+# Tecnologías usadas
+
+Principalmente se desarrollo dentro del IDE de _Intellij IDEA_, empleando el **lenguaje Java 17** con **Spring Boot 3.0** 
+<p align="center" dir="auto">
+<img align="center" src="https://skills.thijs.gg/icons?i=java,spring,mysql,idea,maven,postman,git,github,docker&perline=10" />
+</p>
+
+#### Extras:
+
 * JWT / Spring Security
-* Flyway
-* Mysql
-* JPA
-### Estructura del proyecto WIP
-![]()
-#### --
+* Flyway / JPA
+* Swagger
 
-#### --
-
-
-### Validaciones
-* Validaciones con Bean Validation
-* Control y manejo de excepciones
-* Respuesta personalizada de errores
+# Insignia Obtenida
+<p align="center" dir="auto"><img src="https://photos.google.com/u/2/album/AF1QipP2zXD39Tb667nCi2b2SuzkMaO_Mupul-y7o-La/photo/AF1QipPvAdbG7Igg0go5W1BEUFf4CtDddxXVA3117ter" width="100%"></p>
+<p align="center" dir="auto">Insignia obtenida por la finalización del proyecto </p>
 
 # Licencia
 Este proyecto está licenciado bajo la Licencia MIT
 # Autor
-Creado con 💙 por Giovanni Scarpetta
+<p align="center" dir="auto"><img src="https://github.com/GioScarp/GioScarp/blob/main/Banner_Dev_2.png" width="100%"></p>
+<p align="center" dir="auto">Creado con 💙 por Giovanni Scarpetta</p>
