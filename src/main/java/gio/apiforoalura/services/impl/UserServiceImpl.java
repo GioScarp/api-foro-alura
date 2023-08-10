@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void updateDataUser(User user, UserUpdateDto userDto) {
-        user.setUserName(userDto.userName());
+        user.setUserName(userDto.username());
         user.setEmail(userDto.email());
 
         //userRepository.saveAndFlush(user);

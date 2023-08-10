@@ -1,0 +1,8 @@
+ALTER TABLE users
+    ADD role VARCHAR(20) DEFAULT 'USER';
+
+ALTER TABLE users
+    ADD fristname VARCHAR(50) NOT NULL;
+
+ALTER TABLE users
+    ADD lastname VARCHAR(50) NOT NULL;

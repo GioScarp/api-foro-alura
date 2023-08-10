@@ -8,6 +8,8 @@ import lombok.Builder;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 public record TopicDto(
@@ -18,11 +20,17 @@ public record TopicDto(
         @NotBlank(message = "El topico debe tener un mensaje obligatorio")
         @Size(min = 5, max = 300, message = "El mensaje debe tener entre 1 y 300 caracteres")
         String message,
-        StatusTopic statusTopic,
         @NotNull(message = "Usuario no debe estar null")
         Long user,
         @NotNull(message = "curso no debe estar null")
-        Long course) implements Serializable {
+        Long course,
+        StatusTopic statusTopic,
+
+        String createBy,
+
+        int numResponses,
+        LocalDateTime lastlastModifiedDate,
+        List<ResponseDto> respuestas) implements Serializable {
 
         @Serial
         private static final long serialVersionUID = -97824693522548545L;
