@@ -9,8 +9,8 @@ import java.io.Serializable;
 
 @Builder
 public record UserUpdateDto(
-        @NotBlank(message = "El username es obligatorio")
-        String userName,
+        @NotBlank(message = "El createBy es obligatorio")
+        String username,
         @NotBlank(message = "El email es obligatorio")
         @Email(message = "El email no es valido")
         String email)implements Serializable {

@@ -1,5 +1,7 @@
 package gio.apiforoalura.controllers;
 
+import gio.apiforoalura.dto.LightTopicResponseDto;
+import gio.apiforoalura.dto.ResponseDto;
 import gio.apiforoalura.dto.TopicDto;
 import gio.apiforoalura.dto.TopicUpdateDto;
 import gio.apiforoalura.infra.exceptions.ObjectValidationException;
@@ -30,13 +32,20 @@ public class TopicoController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<TopicDto>> findAllTopics(@PageableDefault(size = 15) Pageable pageable){
-        return ResponseEntity.ok(topicService.findAll(pageable));
+    public ResponseEntity<Page<LightTopicResponseDto>> findAllTopics(
+            @PageableDefault(size = 15) Pageable pageable){
+        return ResponseEntity.ok(topicService.findAllLight(pageable));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TopicDto> findByIdTopic(@PathVariable Long id){
         return ResponseEntity.ok(topicService.findById(id));
+    }
+
+    @PostMapping("/{id}")
+    @Transactional
+    public ResponseEntity<ResponseDto> addResponseToTopic(@PathVariable Long id, @RequestBody ResponseDto response) throws ObjectValidationException {
+        return ResponseEntity.ok().body(topicService.addResponse(id, response));
     }
 
     @PutMapping("/{id}")

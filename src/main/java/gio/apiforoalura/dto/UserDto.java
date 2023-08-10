@@ -13,7 +13,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public record UserDto(
         Long id,
-        @NotBlank(message = "El username es obligatorio")
+        @NotBlank(message = "El createBy es obligatorio")
         String userName,
         @NotBlank(message = "El nombre es obligatorio")
         String fristname,
